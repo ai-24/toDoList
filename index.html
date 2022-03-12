@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do アプリ</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<header>
+    <h1>To do リスト</h1>
+</header>
+<div id="list">
+    <ul v-if="contents">
+        <form v-if="edit" class="new-list" @submit="onChange">
+            <input type="text" id="editContent" v-model="editContent">
+            <input class="button" type="submit" value="編集する"/>
+            <button @click="editCancel">キャンセル</button>
+        </form>
+        <li v-for="(todo, index) in contents" :key="todo.id">
+            <div v-if="!edit">
+                <input type="checkbox">{{ todo }}
+            </div>
+            <button v-if="!edit" @click="editTodo(todo, index)">編集</button>
+            <button @click="destroyTodo(index)">削除</button>
+        </li>
+    </ul>
+    <form class="new-list" @submit.prevent="onSubmit">
+        <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
+        <input class="button" type="submit" value="To Doを作成"/>
+    </form>
+</div>
+
+
+<script src="main.js"></script>
+<!--<script src="./components/newForm.js"></script>-->
+<!--<script src="./components/toDoList.js"></script>-->
+<script>
+    const mountedApp = app.mount('#list')
+</script>
+</body>
+</html>

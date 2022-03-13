@@ -3,8 +3,8 @@ const app = Vue.createApp({
     return {
       contents: [],
       edit: false,
-      editContent: '',
-      index: ''
+      index: '',
+      todo: ''
     }
   },
   mounted () {
@@ -28,16 +28,12 @@ const app = Vue.createApp({
       }
     },
     editTodo (todo, index) {
-        this.edit = true
-      this.editContent = todo
+      this.edit = true
+      this.todo = todo
       this.index = index
     },
-    onChange () {
-      this.contents.splice(this.index, 1, this.editContent)
-      localStorage.setItem('toDoList', JSON.stringify(this.contents))
-    },
-    editCancel () {
-        this.edit = false
+    backList() {
+      this.edit = false
     }
   }
 })

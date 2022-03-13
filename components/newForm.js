@@ -30,7 +30,7 @@ app.component('new-form', {
     },
     saveTodo () {
       localStorage.setItem('toDoList', JSON.stringify(this.contents))
-      this.$emit('save-to-do')
+      this.$emit('save-todo')
     }
   }
 })

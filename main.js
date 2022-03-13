@@ -1,7 +1,6 @@
 const app = Vue.createApp({
   data () {
     return {
-      content: '',
       contents: [],
       edit: false,
       editContent: '',
@@ -18,16 +17,8 @@ const app = Vue.createApp({
     }
   },
   methods: {
-      onSubmit() {
-        if (!this.content) {
-          return
-        }
-        this.contents.push(this.content)
-        this.content = ''
-        this.saveTodo()
-      },
-    saveTodo () {
-      localStorage.setItem('toDoList', JSON.stringify(this.contents))
+    updateContents () {
+      this.contents = JSON.parse(localStorage.getItem('toDoList'))
     },
     destroyTodo (index) {
         const isDelete = confirm('削除しますか？')

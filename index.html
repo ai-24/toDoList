@@ -25,15 +25,12 @@
             <button @click="destroyTodo(index)">削除</button>
         </li>
     </ul>
-    <form class="new-list" @submit.prevent="onSubmit">
-        <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
-        <input class="button" type="submit" value="To Doを作成"/>
-    </form>
+<new-form @save-to-do="updateContents"></new-form>
 </div>
 
 
 <script src="main.js"></script>
-<!--<script src="./components/newForm.js"></script>-->
+<script src="./components/newForm.js"></script>
 <!--<script src="./components/toDoList.js"></script>-->
 <script>
     const mountedApp = app.mount('#list')

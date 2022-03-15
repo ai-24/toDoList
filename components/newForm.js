@@ -1,4 +1,10 @@
 app.component('new-form', {
+  props: {
+    contents: {
+      type: Array,
+      required: true
+    }
+  },
   template: `
   <form class="new-list" @submit.prevent="onSubmit">
         <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
@@ -7,16 +13,8 @@ app.component('new-form', {
   data () {
     return {
       content: '',
-      contents: []
-    }
-  },
-  mounted () {
-    if (localStorage.getItem('toDoList')) {
-      try {
-        this.contents = JSON.parse(localStorage.getItem('toDoList'))
-      } catch (e) {
-        console.log(e)
-      }
+      contentsArray: [],
+      eachTodo: { edit: false}
     }
   },
   methods: {
@@ -24,13 +22,16 @@ app.component('new-form', {
       if (!this.content) {
         return
       }
-      this.contents.push(this.content)
+      this.eachTodo.detail = this.content
+      this.contentsArray = this.contents
+      this.contentsArray.push(this.eachTodo)
+      this.eachTodo = { edit: false}
       this.content = ''
       this.saveTodo()
     },
     saveTodo () {
-      localStorage.setItem('toDoList', JSON.stringify(this.contents))
-      this.$emit('save-todo')
+      localStorage.setItem('toDoList', JSON.stringify(this.contentsArray))
+      this.$emit('saveTodo')
     }
   }
 })

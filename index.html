@@ -12,23 +12,21 @@
 </header>
 <div id="list">
     <ul v-if="contents">
-    <edit-form v-if="edit" :index="index" :edit="edit" :todo="todo" :contents="contents" @back-list="backList"></edit-form>
-        <li v-for="(todo, index) in contents" :key="todo.id">
-            <div v-if="!edit">
-                <input type="checkbox">{{ todo }}
-            </div>
-            <button v-if="!edit" @click="editTodo(todo, index)">編集</button>
-            <button @click="destroyTodo(index)">削除</button>
-        </li>
+        <to-do-list
+                :contents="contents"
+                @edited-todo="updateContents"
+                @destroy-todo="updateContents"
+
+        ></to-do-list>
     </ul>
-<new-form @save-todo="updateContents"></new-form>
+<new-form :contents="contents" @save-todo="updateContents"></new-form>
 </div>
 
 
 <script src="main.js"></script>
 <script src="./components/newForm.js"></script>
 <script src="./components/editForm.js"></script>
-<!--<script src="./components/toDoList.js"></script>-->
+<script src="./components/toDoList.js"></script>
 <script>
     const mountedApp = app.mount('#list')
 </script>

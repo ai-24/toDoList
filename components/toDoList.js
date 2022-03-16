@@ -5,25 +5,41 @@ app.component('to-do-list', {
       required: true
     }
   },
-  emits: ['edited-todo', 'destroyTodo', 'change-check'],
+  emits: ['editedTodo', 'destroyTodo', 'changeCheck'],
   template:`
-  <li class="frame" v-for="(todo, index) in contents" :key="todo">
-      <div class="todo" v-if="!todo.edit">
+  <li v-for="(todo, index) in contents"
+      :key="todo"
+       class="frame">
+      <div v-if="!todo.edit" class="todo">
           <div class="each-todo">
-              <input v-if="todo.check" checked="checked" type="checkbox" @click="checked(todo, index)">
-              <input v-else type="checkbox" @click="checked(todo, index)">{{ todo.detail }}
+              <input v-if="todo.check"
+                  checked="checked"
+                  type="checkbox"
+                  @click="checked(todo, index)">
+              <input v-else
+                  type="checkbox"
+                  @click="checked(todo, index)">{{ todo.detail }}
           </div>
           <div class="buttons">
-              <button class="edit" @click="editTodo(todo, index)">編集</button>
+              <button
+                  class="edit"
+                  @click="editTodo(todo, index)"
+              >編集</button>
               <button @click="destroyTodo(index)">削除</button>
           </div>
       </div>
-      <edit-form :index="index" :todo="todo" :contents="contents" @edited-list="onEdit" @back-list="backList"></edit-form>
+      <to-do-list-edit-form
+          :index="index"
+          :todo="todo"
+          :contents="contents"
+          @edited-list="onEdit"
+          @back-list="backList"
+      ></to-do-list-edit-form>
   </li>`
   ,
   data () {
     return {
-      todo: { },
+      todo: {},
       todos: [],
       index: '',
     }
@@ -37,13 +53,13 @@ app.component('to-do-list', {
         this.$emit('destroyTodo')
       }
     },
-  editTodo (todo, index) {
-    this.todo = todo
-    this.todo.edit = true
-    this.index = index
-  },
     onEdit () {
-      this.$emit('edited-todo')
+      this.$emit('editedTodo')
+    },
+    editTodo (todo, index) {
+      this.todo = todo
+      this.todo.edit = true
+      this.index = index
     },
     backList() {
       this.todo.edit = false
@@ -57,7 +73,7 @@ app.component('to-do-list', {
       }
       this.todos.splice(index, 1, todo)
       localStorage.setItem('toDoList', JSON.stringify(this.todos))
-      this.$emit('change-check')
+      this.$emit('changeCheck')
     }
   }
 })

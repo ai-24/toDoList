@@ -7,14 +7,21 @@ app.component('new-form', {
   },
   template: `
   <form @submit.prevent="onSubmit">
-      <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
-      <input class="button" type="submit" value="To Doを作成"/>
-    </form>`,
+      <input
+          type="text"
+          id="content"
+          v-model="content"
+          placeholder="新しいTo doを作成">
+      <input
+          class="button"
+          type="submit"
+          value="To Doを作成">
+  </form>`,
   data () {
     return {
       content: '',
       contentsArray: [],
-      eachTodo: { edit: false, check: false}
+      eachTodo: { edit: false, check: false }
     }
   },
   methods: {

@@ -19,13 +19,16 @@
                 @change-check="updateContents"
             ></to-do-list>
         </ul>
-        <new-form :contents="contents" @save-todo="updateContents"></new-form>
+        <new-form
+                :contents="contents"
+                @save-todo="updateContents"
+        ></new-form>
     </div>
 
     <script src="main.js"></script>
-    <script src="./components/newForm.js"></script>
-    <script src="./components/editForm.js"></script>
-    <script src="./components/toDoList.js"></script>
+    <script src="./components/NewForm.js"></script>
+    <script src="./components/ToDoListEditForm.js"></script>
+    <script src="./components/ToDoList.js"></script>
     <script>
       const mountedApp = app.mount('#todo')
     </script>

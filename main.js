@@ -1,7 +1,7 @@
 const app = Vue.createApp({
   data () {
     return {
-      contents: [],
+      contents: []
     }
   },
   mounted () {
@@ -15,7 +15,7 @@ const app = Vue.createApp({
   },
   methods: {
     updateContents () {
-      this.contents = JSON.parse(localStorage.getItem('toDoList'))
+      return this.contents = JSON.parse(localStorage.getItem('toDoList'))
     }
   }
 })

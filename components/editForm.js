@@ -31,13 +31,11 @@ app.component('edit-form', {
   },
   methods: {
     onChange () {
+      this.editDetail = this.contentsArray[this.index]
       this.editDetail.edit = false
       this.editDetail.detail = this.editContent
       this.contentsArray.splice(this.index, 1, this.editDetail)
       localStorage.setItem('toDoList', JSON.stringify(this.contentsArray))
-      this.edited()
-    },
-    edited () {
       this.$emit('edited-list')
     }
   }

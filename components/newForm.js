@@ -14,7 +14,7 @@ app.component('new-form', {
     return {
       content: '',
       contentsArray: [],
-      eachTodo: { edit: false}
+      eachTodo: { edit: false, check: false}
     }
   },
   methods: {
@@ -25,7 +25,6 @@ app.component('new-form', {
       this.eachTodo.detail = this.content
       this.contentsArray = this.contents
       this.contentsArray.push(this.eachTodo)
-      this.eachTodo = { edit: false}
       this.content = ''
       this.saveTodo()
     },

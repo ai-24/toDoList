@@ -7,28 +7,27 @@
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-<header>
-    <h1>To do リスト</h1>
-</header>
-<div id="todo">
-    <ul class="list" v-if="contents">
-        <to-do-list
+    <header>
+        <h1>To do リスト</h1>
+    </header>
+    <div id="todo">
+        <ul class="list" v-if="contents">
+            <to-do-list
                 :contents="contents"
                 @edited-todo="updateContents"
                 @destroy-todo="updateContents"
+                @change-check="updateContents"
+            ></to-do-list>
+        </ul>
+        <new-form :contents="contents" @save-todo="updateContents"></new-form>
+    </div>
 
-        ></to-do-list>
-    </ul>
-<new-form :contents="contents" @save-todo="updateContents"></new-form>
-</div>
-
-
-<script src="main.js"></script>
-<script src="./components/newForm.js"></script>
-<script src="./components/editForm.js"></script>
-<script src="./components/toDoList.js"></script>
-<script>
-    const mountedApp = app.mount('#todo')
-</script>
+    <script src="main.js"></script>
+    <script src="./components/newForm.js"></script>
+    <script src="./components/editForm.js"></script>
+    <script src="./components/toDoList.js"></script>
+    <script>
+      const mountedApp = app.mount('#todo')
+    </script>
 </body>
 </html>

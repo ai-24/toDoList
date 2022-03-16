@@ -5,12 +5,13 @@ app.component('to-do-list', {
       required: true
     }
   },
-  emits: ['edited-todo', 'destroyTodo'],
+  emits: ['edited-todo', 'destroyTodo', 'change-check'],
   template:`
   <li class="frame" v-for="(todo, index) in contents" :key="todo">
       <div class="todo" v-if="!todo.edit">
           <div class="each-todo">
-              <input type="checkbox">{{ todo.detail }}
+              <input v-if="todo.check" checked="checked" type="checkbox" @click="checked(todo, index)">
+              <input v-else type="checkbox" @click="checked(todo, index)">{{ todo.detail }}
           </div>
           <div class="buttons">
               <button class="edit" @click="editTodo(todo, index)">編集</button>
@@ -22,8 +23,9 @@ app.component('to-do-list', {
   ,
   data () {
     return {
-      todo: {},
-      index: ''
+      todo: { },
+      todos: [],
+      index: '',
     }
   },
   methods: {
@@ -31,7 +33,6 @@ app.component('to-do-list', {
       const isDelete = confirm('削除しますか？')
       if (isDelete) {
         this.contents.splice(index, 1)
-        console.log(this.contents)
         localStorage.setItem('toDoList', JSON.stringify(this.contents))
         this.$emit('destroyTodo')
       }
@@ -46,6 +47,17 @@ app.component('to-do-list', {
     },
     backList() {
       this.todo.edit = false
+    },
+    checked (todo, index) {
+      this.todos = this.contents
+      if (todo.check === false) {
+        todo.check = true
+      } else {
+        todo.check = false
+      }
+      this.todos.splice(index, 1, todo)
+      localStorage.setItem('toDoList', JSON.stringify(this.todos))
+      this.$emit('change-check')
     }
   }
 })

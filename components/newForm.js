@@ -6,9 +6,9 @@ app.component('new-form', {
     }
   },
   template: `
-  <form class="new-list" @submit.prevent="onSubmit">
-        <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
-        <input class="button" type="submit" value="To Doを作成"/>
+  <form @submit.prevent="onSubmit">
+      <input type="text" id="content" v-model="content" placeholder="新しいTo doを作成">
+      <input class="button" type="submit" value="To Doを作成"/>
     </form>`,
   data () {
     return {

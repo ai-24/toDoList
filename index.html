@@ -10,8 +10,8 @@
 <header>
     <h1>To do リスト</h1>
 </header>
-<div id="list">
-    <ul v-if="contents">
+<div id="todo">
+    <ul class="list" v-if="contents">
         <to-do-list
                 :contents="contents"
                 @edited-todo="updateContents"
@@ -28,7 +28,7 @@
 <script src="./components/editForm.js"></script>
 <script src="./components/toDoList.js"></script>
 <script>
-    const mountedApp = app.mount('#list')
+    const mountedApp = app.mount('#todo')
 </script>
 </body>
 </html>

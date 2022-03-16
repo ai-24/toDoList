@@ -14,10 +14,9 @@ app.component('edit-form', {
     }
   },
   template: `
-  <form v-if="this.todo.edit" class="new-list" @submit="onChange">
+  <form class="edit-form" v-if="this.todo.edit" @submit="onChange">
   　　  <input type="text" id="editContent" v-model="editContent">
-  　　  <input class="button" type="submit" value="編集する"/>
-  　　  <button @click="$emit('back-list')">キャンセル</button>
+  　　  <input class="edit-button" type="submit" value="編集する"/><button class="cancel" @click="$emit('back-list')">キャンセル</button>
   </form>`,
   data () {
     return {

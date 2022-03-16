@@ -7,11 +7,15 @@ app.component('to-do-list', {
   },
   emits: ['edited-todo', 'destroyTodo'],
   template:`
-  <li v-for="(todo, index) in contents" :key="todo">
-      <div v-if="!todo.edit">
-          <input type="checkbox">{{ todo.detail }}
-          <button @click="editTodo(todo, index)">編集</button>
-          <button @click="destroyTodo(index)">削除</button>
+  <li class="frame" v-for="(todo, index) in contents" :key="todo">
+      <div class="todo" v-if="!todo.edit">
+          <div class="each-todo">
+              <input type="checkbox">{{ todo.detail }}
+          </div>
+          <div class="buttons">
+              <button class="edit" @click="editTodo(todo, index)">編集</button>
+              <button @click="destroyTodo(index)">削除</button>
+          </div>
       </div>
       <edit-form :index="index" :todo="todo" :contents="contents" @edited-list="onEdit" @back-list="backList"></edit-form>
   </li>`

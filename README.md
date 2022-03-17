@@ -1,7 +1,7 @@
 # ToDoListアプリ
 ToDoを登録し管理できるアプリです。
 
-#Usage
+# Usage
 
 1. ForkボタンをしてForkしてください。
 2. (自分のアカウント名)/toDoListが作成された後、作業PCの作業ディレクトリでgit cloneしてください。
